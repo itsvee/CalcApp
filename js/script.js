@@ -9,8 +9,8 @@ $('.operator-button').click(function() {
     $('.operator-area').find('.operator-button').removeClass('active');
 
     operator = this.id;
-    aVal = parseInt($('#a-value').val());
-    bVal = parseInt($('#b-value').val());
+    aVal = parseFloat($('#a-value').val());
+    bVal = parseFloat($('#b-value').val());
 
     if ( (isNaN(aVal) || aVal === "") && (isNaN(bVal) || bVal === "") ) {
         $('.input-a').find('.warning').show();
@@ -111,6 +111,10 @@ function saveHistory() {
             $('.input-b').find('.warning').show();
             return;
         }
+        if ($('#result').val() === "") {
+            $('.operator-area').find('.warning').show();
+            return;
+        }       
     }
 
     let obj = { 
@@ -180,6 +184,9 @@ function restoreData(data) {
         dialog.showErrorBox("Unsuccess!", "An error ocurred reading the file : some data has missing");
     } else {
         $('.operator-area').find('.operator-button').removeClass('active');
+        $('.input-a').find('.warning').hide();
+        $('.input-b').find('.warning').hide();
+        $('.operator-area').find('.warning').hide();
         $('#a-value').val(value.a);
         $('#b-value').val(value.b);
         $('#'+value.operator).addClass('active');
@@ -193,6 +200,9 @@ function clearInput() {
     $('#a-value').val('');
     $('#b-value').val('');
     $('#result').val('');
+    $('.input-a').find('.warning').hide();
+    $('.input-b').find('.warning').hide();
+    $('.operator-area').find('.warning').hide();
     aVal = '';
     bVal = '';
     operator = '';
