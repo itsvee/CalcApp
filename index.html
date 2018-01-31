@@ -11,24 +11,24 @@
 			<div class="input-area">
 				<div class="input-a">
 					<p class="label">A</p>
-					<input type="number">
+					<input type="number" id="a-value">
 				</div>
 				<div class="input-b">
 					<p class="label">B</p>
-					<input type="number">
+					<input type="number" id="b-value">
 				</div>
 			</div>
 			<div class="operator-area">
-				<button type="button" id="plus-btn" class="operator-button">+</button>
-				<button type="button" id="minus-btn" class="operator-button">-</button>
-				<button type="button" id="multiply-btn" class="operator-button">x</button>
-				<button type="button" id="divide-btn" class="operator-button">/</button>
-				<button type="button" id="power-btn" class="operator-button">Pow</button>
+				<button type="button" id="plus" class="operator-button">+</button>
+				<button type="button" id="minus" class="operator-button">-</button>
+				<button type="button" id="multiply" class="operator-button">x</button>
+				<button type="button" id="divide" class="operator-button">/</button>
+				<button type="button" id="power" class="operator-button">Pow</button>
 			</div>
 			<div class="result-area">
 				<div class="input-result">
 					<p class="label">Result</p>
-					<input type="number" disabled>
+					<input type="text" id="result" disabled>
 				</div>
 			</div>		
 			<div class="button-area">
@@ -36,5 +36,7 @@
 				<button type="button" id="save-btn" class="action-button">Save</button>
 			</div>		
 		</div>
+		<script>window.$ = window.jQuery = require('./js/jquery.min.js');</script>
+		<script src="./js/script.js"></script>
 	</body>
 </html>
