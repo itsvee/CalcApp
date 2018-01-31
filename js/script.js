@@ -15,15 +15,15 @@ $('.operator-button').click(function() {
     if ( (isNaN(aVal) || aVal === "") && (isNaN(bVal) || bVal === "") ) {
         $('.input-a').find('.warning').show();
         $('.input-b').find('.warning').show();
-        return false;
+        return;
     } else {
         if (isNaN(aVal) || aVal === "") {
             $('.input-a').find('.warning').show();
-            return false;
+            return;
         }
         if (isNaN(bVal) || bVal === "") {
             $('.input-b').find('.warning').show();
-            return false;
+            return;
         }
     }
 
@@ -64,6 +64,14 @@ $('#save-btn').click(function() {
     saveHistory();
 });
 
+$('#load-btn').click(function() {
+    loadHistory();
+});
+
+$('#clear-btn').click(function() {
+    clearInput();
+});
+
 function plusNumber(a, b) {
     return a + b;
 }
@@ -89,6 +97,22 @@ function powerNumber(a, b) {
 }
 
 function saveHistory() {
+
+    if ( ($('#a-value').val() === "") && ($('#b-value').val() === "") ) {
+        $('.input-a').find('.warning').show();
+        $('.input-b').find('.warning').show();
+        return;
+    } else {
+        if ($('#a-value').val() === "") {
+            $('.input-a').find('.warning').show();
+            return;
+        }
+        if ($('#b-value').val() === "") {
+            $('.input-b').find('.warning').show();
+            return;
+        }
+    }
+
     let obj = { 
         "a"         : aVal,
         "b"         : bVal,
@@ -109,7 +133,6 @@ function saveHistory() {
         if (fileName) {
             fs.writeFile(fileName, content, (err) => {
                 if(err){
-                    alert();
                     dialog.showErrorBox("Unsuccess!", "An error ocurred creating the file "+ err.message);
                 }
                 dialog.showMessageBox({
@@ -120,4 +143,58 @@ function saveHistory() {
             });
         }
     });
+}
+
+function loadHistory() {
+
+    dialog.showOpenDialog({
+        title: 'Open history',
+        filters: [{
+            extensions: ['json']
+        }]
+    }, (fileNames) => {
+        // fileNames is an array that contains all the selected
+        if(fileNames === undefined) {
+            console.log("No file selected");
+            return;
+        }
+    
+        fs.readFile(fileNames[0], 'utf-8', (err, data) => {
+            if(err){
+                dialog.showErrorBox("Unsuccess!", "An error ocurred reading the file "+ err.message);
+                return;
+            }
+
+            restoreData(data);
+
+        });
+    });
+
+}
+
+function restoreData(data) {
+    var value = JSON.parse(data);
+    console.log(value);
+
+    if ( (value.a == "" || isNaN(value.a)) && (value.b == "" || isNaN(value.b)) && (value.operator == "") && (value.result == "" || isNaN(value.result)) ) {
+        dialog.showErrorBox("Unsuccess!", "An error ocurred reading the file : some data has missing");
+    } else {
+        $('.operator-area').find('.operator-button').removeClass('active');
+        $('#a-value').val(value.a);
+        $('#b-value').val(value.b);
+        $('#'+value.operator).addClass('active');
+        $('#result').val(value.result);
+    }
+
+}  
+
+function clearInput() {
+    $('.operator-area').find('.operator-button').removeClass('active');
+    $('#a-value').val('');
+    $('#b-value').val('');
+    $('#result').val('');
+    aVal = '';
+    bVal = '';
+    operator = '';
+    sum = '';
 }
