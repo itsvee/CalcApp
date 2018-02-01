@@ -9,8 +9,11 @@ const electronBinary = path.join(baseDir, 'node_modules', '.bin', 'electron');
 
 const sleep = time => new Promise(r => setTimeout(r, time));
 
+const aInput = Math.floor(Math.random() * 201) - 100;
+const bInput = Math.floor(Math.random() * 201) - 100;
+
 describe('Application launch', function () {
-    this.timeout(10000);
+    this.timeout(150000);
 
     const app = new Application({
         path: electronBinary,
@@ -23,11 +26,64 @@ describe('Application launch', function () {
 
     it('shows an initial window', function () {
         return app.client.getWindowCount().then(function (count) {
-          assert.equal(count, 1)
+          assert.equal(count, 1);
         });
     });
 
-    
-    
+    it('plus number', function () {
+        let result = aInput + bInput;
+        return app.client
+            .setValue('#a-value', aInput)
+            .setValue('#b-value', bInput)
+            .click('#plus')
+            .getValue('#result').then(function(value) {
+                assert.equal(value, result.toString());
+            });
+    });
 
-})
+    it('minus number', function () {
+        let result = aInput - bInput;
+        return app.client
+            .setValue('#a-value', aInput)
+            .setValue('#b-value', bInput)
+            .click('#minus')
+            .getValue('#result').then(function(value) {
+                assert.equal(value, result.toString());
+            });
+    });
+
+    it('multiply number', function () {
+        let result = aInput * bInput;
+        return app.client
+            .setValue('#a-value', aInput)
+            .setValue('#b-value', bInput)
+            .click('#multiply')
+            .getValue('#result').then(function(value) {
+                assert.equal(value, result.toString());
+            });
+    });
+
+    it('divide number', function () {
+        let result = aInput / bInput;
+        return app.client
+            .setValue('#a-value', aInput)
+            .setValue('#b-value', bInput)
+            .click('#divide')
+            .getValue('#result').then(function(value) {
+                assert.equal(value, result.toString());
+            });
+    });
+
+    it('power number', function () {
+        let result = Math.pow(aInput, bInput);
+        return app.client
+            .setValue('#a-value', aInput)
+            .setValue('#b-value', bInput)
+            .click('#power')
+            .getValue('#result').then(function(value) {
+                assert.equal(value, result.toString());
+            });
+    });
+
+});
+
