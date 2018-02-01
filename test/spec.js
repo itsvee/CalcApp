@@ -9,9 +9,6 @@ const electronBinary = path.join(baseDir, 'node_modules', '.bin', 'electron');
 
 const sleep = time => new Promise(r => setTimeout(r, time));
 
-const aInput = Math.floor(Math.random() * 201) - 100;
-const bInput = Math.floor(Math.random() * 201) - 100;
-
 describe('Application launch', function () {
     this.timeout(150000);
 
@@ -31,6 +28,8 @@ describe('Application launch', function () {
     });
 
     it('plus number', function () {
+        let aInput = Math.floor(Math.random() * 1001) - 1000;
+        let bInput = Math.floor(Math.random() * 1001) - 1000;
         let result = aInput + bInput;
         return app.client
             .setValue('#a-value', aInput)
@@ -42,6 +41,8 @@ describe('Application launch', function () {
     });
 
     it('minus number', function () {
+        let aInput = Math.floor(Math.random() * 1001) - 1000;
+        let bInput = Math.floor(Math.random() * 1001) - 1000;
         let result = aInput - bInput;
         return app.client
             .setValue('#a-value', aInput)
@@ -53,6 +54,8 @@ describe('Application launch', function () {
     });
 
     it('multiply number', function () {
+        let aInput = Math.floor(Math.random() * 1001) - 1000;
+        let bInput = Math.floor(Math.random() * 1001) - 1000;
         let result = aInput * bInput;
         return app.client
             .setValue('#a-value', aInput)
@@ -64,6 +67,8 @@ describe('Application launch', function () {
     });
 
     it('divide number', function () {
+        let aInput = Math.floor(Math.random() * 1001) - 1000;
+        let bInput = Math.floor(Math.random() * 1001) - 1000;
         let result = aInput / bInput;
         return app.client
             .setValue('#a-value', aInput)
@@ -75,6 +80,8 @@ describe('Application launch', function () {
     });
 
     it('power number', function () {
+        let aInput = Math.floor(Math.random() * 1001) - 1000;
+        let bInput = Math.floor(Math.random() * 1001) - 1000;
         let result = Math.pow(aInput, bInput);
         return app.client
             .setValue('#a-value', aInput)
