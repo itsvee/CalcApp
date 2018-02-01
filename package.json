@@ -1,17 +1,23 @@
 {
-    "name"    : "calcapp",
-    "version" : "1.0.0",
-    "description": "",
-    "main"    : "main.js",
-    "dependencies": {
-        "pretty-bytes": "^2.0.1"
-      },
-      "devDependencies": {
-        "electron-prebuilt": "^0.35.2"
-      },
-      "scripts": {
-        "start": "electron main.js"
-      },
-      "author": "Weerayut Chalaruk",
-      "license": "ISC"
-  }
+  "name": "calcapp",
+  "productName": "CalsApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "pretty-bytes": "^2.0.1"
+  },
+  "devDependencies": {
+    "electron": "^1.7.12",
+    "electron-packager": "^10.1.2",
+    "electron-prebuilt": "^0.35.6",
+    "mocha": "^5.0.0",
+    "spectron": "^3.8.0"
+  },
+  "scripts": {
+    "start": "electron main.js",
+    "test": "mocha"
+  },
+  "author": "Weerayut Chalaruk",
+  "license": "ISC"
+}
