@@ -10,9 +10,9 @@ function createWindow () {
   // Create the browser window.
   win = new BrowserWindow({
     width: 450, 
-    height: 300,
+    height: 350,
     minWidth: 450, 
-    minHeight: 300,
+    minHeight: 350,
     icon: path.join(__dirname, 'assets/icons/png/64x64.png')
   });
 
@@ -24,7 +24,7 @@ function createWindow () {
   }));
 
   // Open the DevTools.
-  // win.webContents.openDevTools();
+  win.webContents.openDevTools();
 
   // Emitted when the window is closed.
   win.on('closed', () => {
