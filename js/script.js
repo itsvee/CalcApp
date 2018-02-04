@@ -8,22 +8,22 @@ var urlApi = "https://semiotic-axis-194016.appspot.com/api/";
 
 var aVal, bVal, operator, sum, token;
 
-localStorage.clear();
+// localStorage.clear();
 
-// if ((localStorage.getItem("token") === null)) {
-//     $.ajax({
-//         method: "POST",
-//         url: urlApi+"getToken",
-//         data: { uuid: uuid }
-//     }).done(function( result ) {
-//         if(!result.error) {
-//             token = result.data.token;
-//             localStorage.setItem("token", token);
-//         }
-//     });
-// } else {
-//     token = localStorage.getItem("token");
-// }
+if ((localStorage.getItem("token") === null)) {
+    $.ajax({
+        method: "POST",
+        url: urlApi+"getToken",
+        data: { uuid: uuid }
+    }).done(function( result ) {
+        if(!result.error) {
+            token = result.data.token;
+            localStorage.setItem("token", token);
+        }
+    });
+} else {
+    token = localStorage.getItem("token");
+}
 
 $('.operator-button').click(function() {
 
