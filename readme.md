@@ -30,6 +30,12 @@ npm run package-win
 npm run package-linux
 ```
 
+or you can run this command to start project
+
+```
+npm start
+```
+
 ## Built With
 
 * [Electron](https://electronjs.org/) - The framework used
